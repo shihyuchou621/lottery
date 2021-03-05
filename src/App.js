@@ -1,43 +1,38 @@
 import './App.css';
 import React, { useState } from 'react';
 
+const max = 3;
+
 const QRlist = [
-  {name: "Kelly", QR: 1}, 
-  {name: "Ben", QR: 2}, 
-  {name: "Kon", QR: 3}, 
-  {name: "By", QR: 4}, 
-  {name: "BigCat", QR: 5}, 
-  {name: "SmallCat", QR: 6}
+  {QR: 'AAAAAAA', name: "Kelly"},
+  {QR: 'BBBBBBB', name: "Ben"},
+  {QR: 'CCCCCCC', name: "Kon"}, 
+  {QR: 'DDDDDDD', name: "By"},
+  {QR: 'EEEEEEE', name: "BigCat"},
+  {QR: 'FFFFFFF', name: "SmallCat"},
 ];
 
-
 export default function App() {
-  const [drawList, setDrawList] = useState([]);
-  const [drawNum, setDrawNum] = useState(null);
-  const [awardList, setAwardList] = useState([
-    {award: "first", QR: null}, 
-    {award: "second", QR: null}, 
-    {award: "third", QR: null}]
-  );
+  const [drawList, setDrawList] = useState([]); // [QR, QR, ...]
 
   const draw = () => {
-    let randomDraw = Math.floor(Math.random() * 6);
-    if(drawList.indexOf(randomDraw) > -1) { draw(); }
-    setDrawNum(randomDraw);
+    let drawNum = null;
+    do {
+      drawNum = Math.floor(Math.random() * 6);
+    } while (drawList.indexOf(QRlist[drawNum].QR) > -1);
+    return drawNum;
   }
-
+// number
   const handleClick = () => {
-    draw();
+    const drawNum = draw();
     setDrawList([...drawList, QRlist[drawNum].QR]);
-    awardList[0].QR = QRlist[drawNum].QR;
   }
   
-  console.log(drawList, 10);
+  console.log(drawList);
 
-  
   return (
     <div className="App">
-      <button onClick={handleClick}>click</button>
+      <button onClick={handleClick} disabled={drawList.length >= max}>click</button>
       得獎者：{drawList[drawList.length-1]}
     </div>
   );
