@@ -52,7 +52,7 @@ export default function App() {
               <div className="inner-middle">
                 <div className="inner-middle">
                   <div className="text">
-                    <div>
+                    <div className="roller">
                       {List10.map(QR => 
                         <div className="QR">{QR}</div>
                       )}
