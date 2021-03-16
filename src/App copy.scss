@@ -1,0 +1,89 @@
+@mixin pos($tp-margin: 10px, $lr-margin: 10px) {
+  position: absolute;
+  top: $tp-margin;
+  bottom: $tp-margin;
+  left: $lr-margin;
+  right: $lr-margin;
+}
+
+.App {
+  border: brown solid 2px;
+  text-align: center;
+
+  .award {
+    border: black solid 2px;
+
+    .border-out {
+      width: 500px;
+      height: 150px;
+      position: relative;
+      border-radius: 5px;
+      background: #A68573;
+      margin: 80px auto 20px auto;
+
+      .border-middle {
+        @include pos;
+        border-radius: 5px;
+        background: #524757;
+
+        .inner-out {
+          @include pos;
+          background: #C5C3AA;
+
+          .inner-middle {
+            @include pos(7.5px, 0);
+            background: #E2DEC4;
+
+            .text {
+              @include pos(0, 0);
+              background: #FCF8DD;
+
+              .QR {
+                width: 100%;
+                height: 100%;
+                font-size: 50px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .button-bottom {
+      width: 365px;
+      height: 75px;
+      margin: 10px auto;
+      border-radius: 3px;
+      position: relative;
+      background-color: #524757;
+      
+      .button {
+        padding: 0;
+        left: 10px;
+        bottom: 10px;
+        width: 345px;
+        height: 75px;
+        outline: none;
+        display: flex;
+        cursor: pointer;
+        position: absolute;
+        background: #A68573;
+        flex-direction: column;
+        border-radius: 3px 3px 0px 0px;
+        border: 0px;
+
+        .button-text {
+          flex: 1;
+        }
+
+        &:after {
+          content: '';
+          width: 100%;
+          height: 7.5px;
+          display: block;
+          background: #936850;
+        }
+      }
+    }
+  }
+}

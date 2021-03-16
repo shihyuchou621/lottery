@@ -1,6 +1,7 @@
-import './App.scss';
+import './App copy.scss';
 import React, { useState } from 'react';
 import faker, { random } from 'faker';
+import Carousel from './Carousel';
 
 const max = 5;
 
@@ -45,46 +46,35 @@ export default function App() {
   return (
     <div className="App">
       <div className="award">
-        <div className="runningAward">
-          {QR}
+        <div className="border-out">
+          <div className="border-middle">
+            <div className="inner-out">
+              <div className="inner-middle">
+                <div className="inner-middle">
+                  <div className="text">
+                    <div>
+                      {List10.map(QR => 
+                        <div className="QR">{QR}</div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <button 
-          className="button"
-          onClick={handleClick}
-          disabled={drawList.length >= max}
-        >
-        </button>
-        <div 
-          className="bar" 
-          onClick={handleClick}
-          disabled={drawList.length >= max}
-        />
+        <div className="button-bottom">  
+          <button 
+            className="button"
+            onClick={handleClick}
+            disabled={drawList.length >= max}
+          >
+            <div className="button-text">
+              開始抽獎
+            </div>
+          </button>
+        </div>
       </div>
-      <div className="awardData">
-        <div className="title">得獎者</div>
-        <div className="content">{name}</div>
-      </div>
-      <div className="awardData">
-        <div className="title">QRcode</div>
-        <div className="content">{QR}</div>
-      </div>
-      <div>中獎清單</div>
-      <table className="drawList">
-        <thead>
-          <tr>
-            <th>得獎者</th>
-            <th>QRcode</th>
-          </tr>
-        </thead>
-        <tbody>
-          {drawList.map(({ name, QR }) => 
-          <tr key={QR}>
-              <td>{name}</td>
-              <td>{QR}</td>
-          </tr>
-          )}  
-        </tbody>
-      </table>
     </div>
   );
 }

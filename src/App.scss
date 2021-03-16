@@ -1,0 +1,98 @@
+.App {
+  border: brown solid 2px;
+  text-align: center;
+
+  .award {
+    width: 200px;
+    height: 250px;
+    margin: 0 auto;
+    position: relative;
+    border: black solid 2px;
+
+    .runningAward {
+      left: 0;
+      top: 50%;
+      width: 200px;
+      height: 50px;
+      position: absolute;
+      border-radius: 10px;
+      display: inline-block;
+      background-color: #fff;
+    }
+
+    .button {
+      top: 0;
+      right: -80px;
+      padding: 0;
+      width: 50px;
+      height: 50px;
+      outline: none;
+      cursor: pointer;
+      margin: 50px auto;
+      border-radius: 50%;
+      position: absolute;
+      background-color: violet;
+      border: 1px solid transparent;
+    }
+    
+    .bar {
+      width: 20px;
+      height: 52px;
+      right: -60px;
+      top: 98px;
+      cursor: pointer;
+      display: inline;
+      position: absolute;
+      border-bottom: 10px solid violet;
+      border-right: 10px solid violet;
+    }
+  }
+
+  .awardData {
+    border: green solid 2px;
+    height: 50px;
+    font-size: 25px;
+    margin: 10px;
+    text-align: center;
+
+    .title {
+      width: 130px;
+      height: 40px;
+      display: inline-block;
+      border: yellow solid 2px;
+    }
+    
+    .content {
+      width: 250px;
+      height: 40px;
+      display: inline-block;
+      border: yellow solid 2px;
+    }
+  }
+
+  .drawList {
+    border: red solid 2px;
+    width: 500px;
+    margin: 0 auto;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* .button:after {
+  content: "";
+  width: 12px;
+  height: 30px;
+  background-color: red;
+  position: relative;
+  top: 30px;
+} */
+
