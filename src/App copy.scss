@@ -39,12 +39,30 @@
               overflow: hidden;
               background: #FCF8DD;
               .roller {
-                position: absolute;
                 bottom: 0;
+                width: 100%;
+                position: absolute;
+                // animation-fill-mode: forwards;
+                &.start {
+                  animation: starting 3000ms;
+                  animation-timing-function: ease-in; // 先慢後快
+                }
+                &.run {
+                  animation: run 310ms;
+                  animation-iteration-count: infinite;
+                  animation-timing-function: linear; // 等速
+                }
+                &.stop {
+                  animation: stopping 3000ms;
+                  animation-timing-function: ease-out; // 先快後慢
+                  animation-fill-mode: forwards;
+                }
                 .QR {
                   width: 100%;
-                  height: 100%;
-                  font-size: 50px;
+                  height: 80px;
+                  font-size: 40px;
+                  font-weight: 700;
+                  text-align: center;
                 }
               }
             }
@@ -78,6 +96,10 @@
 
         .button-text {
           flex: 1;
+          margin: auto;
+          color: #fff;
+          font-size: 40px;
+          font-weight: 700;
         }
 
         &:after {
@@ -89,5 +111,50 @@
         }
       }
     }
+  }
+}
+
+@keyframes starting {
+  0% {
+    bottom: 0%;
+    filter: blur(0);
+  }
+
+  50% {
+    // bottom: -750%;
+    filter: blur(0);
+  }
+
+  100% {
+    bottom: -1500%;
+    filter: blur(2px);
+  }
+}
+
+@keyframes run {
+  0% {
+    bottom: 0%;
+    filter: blur(2px);
+  }
+  100% {
+    bottom: -1500%;
+    filter: blur(2px);
+  }
+}
+
+@keyframes stopping {
+  0% {
+    bottom: 0%;
+    filter: blur(2px);
+  }
+
+  50% {
+    // bottom: -750%;
+    filter: blur(0);
+  }
+
+  100% {
+    bottom: -1500%;
+    filter: blur(0);
   }
 }

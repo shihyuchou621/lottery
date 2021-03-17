@@ -1,6 +1,7 @@
 import './App copy.scss';
 import React, { useState } from 'react';
 import faker, { random } from 'faker';
+import cx from "classnames";
 import Carousel from './Carousel';
 
 const max = 5;
@@ -18,7 +19,7 @@ const QRlist = generateList();
 console.log(QRlist);
 
 const generate10 = (QRlist) => {
-  return [...QRlist].sort(() => Math.random() - .5).slice(0, 10); // 不寫[...QRlist]只寫QRlist的話，因為是同一個記憶體位置，可能會回傳原本的東西
+  return [...QRlist].sort(() => Math.random() - .5).slice(0, 16); // 不寫[...QRlist]只寫QRlist的話，因為是同一個記憶體位置，可能會回傳原本的東西
 }
 
 const List10 = generate10(QRlist).map( i => i.QR);
@@ -27,6 +28,7 @@ console.log(List10);
 
 export default function App() {
   const [drawList, setDrawList] = useState([]);
+  const [aniName, setAniName] = useState("");
 
   const draw = () => {
     let drawNum = null;
@@ -37,8 +39,15 @@ export default function App() {
   }
 // number
   const handleClick = () => {
-    const drawNum = draw();
-    setDrawList([QRlist[drawNum], ...drawList]);
+    setAniName("start");
+    setTimeout(() => {
+      setTimeout(() => setAniName("stop"), 3000);
+      setAniName("run")
+    }, 3000);
+    
+    // const drawNum = draw();
+    // setDrawList([QRlist[drawNum], ...drawList]);
+
   }
 
   const { name, QR } = QRlist.find(i => i === drawList[0]) || {}; // 如果find找不到(前面是falsly)要給空物件
@@ -52,7 +61,9 @@ export default function App() {
               <div className="inner-middle">
                 <div className="inner-middle">
                   <div className="text">
-                    <div className="roller">
+                    <div className={cx("roller",{
+                      [aniName]: true
+                    })}>
                       {List10.map(QR => 
                         <div className="QR">{QR}</div>
                       )}
