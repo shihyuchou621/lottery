@@ -1,10 +1,7 @@
-import './App copy.scss';
+import './App2.scss';
 import React, { useState } from 'react';
-import faker, { random } from 'faker';
+import faker from 'faker';
 import cx from "classnames";
-import Carousel from './Carousel';
-
-const max = 5;
 
 const generateList = () => {
   let QRlist = [];
@@ -16,28 +13,24 @@ const generateList = () => {
 
 const QRlist = generateList();
 
-console.log(QRlist);
-
 const generate10 = (QRlist) => {
   return [...QRlist].sort(() => Math.random() - .5).slice(0, 16); // 不寫[...QRlist]只寫QRlist的話，因為是同一個記憶體位置，可能會回傳原本的東西
 }
 
 const List10 = generate10(QRlist).map( i => i.QR);
 
-console.log(List10);
-
 export default function App() {
-  const [drawList, setDrawList] = useState([]);
+  // const [drawList, setDrawList] = useState([]);
   const [aniName, setAniName] = useState("");
   const [unclick, setUnclick] = useState(false);
 
-  const draw = () => {
-    let drawNum = null;
-    do {
-      drawNum = Math.floor(Math.random() * 6);
-    } while (drawList.indexOf(QRlist[drawNum]) > -1);
-    return drawNum;
-  }
+  // const draw = () => {
+  //   let drawNum = null;
+  //   do {
+  //     drawNum = Math.floor(Math.random() * 6);
+  //   } while (drawList.indexOf(QRlist[drawNum]) > -1);
+  //   return drawNum;
+  // }
 // number
   const handleClick = () => {
     setUnclick(true);
@@ -52,7 +45,7 @@ export default function App() {
 
   }
 
-  const { name, QR } = QRlist.find(i => i === drawList[0]) || {}; // 如果find找不到(前面是falsly)要給空物件
+  // const { name, QR } = QRlist.find(i => i === drawList[0]) || {}; // 如果find找不到(前面是falsly)要給空物件
 
   return (
     <div className="App">
