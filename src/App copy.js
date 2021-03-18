@@ -29,6 +29,7 @@ console.log(List10);
 export default function App() {
   const [drawList, setDrawList] = useState([]);
   const [aniName, setAniName] = useState("");
+  const [unclick, setUnclick] = useState(false);
 
   const draw = () => {
     let drawNum = null;
@@ -39,6 +40,7 @@ export default function App() {
   }
 // number
   const handleClick = () => {
+    setUnclick(true);
     setAniName("start");
     setTimeout(() => {
       setTimeout(() => setAniName("stop"), 3000);
@@ -78,7 +80,7 @@ export default function App() {
           <button 
             className="button"
             onClick={handleClick}
-            disabled={drawList.length >= max}
+            disabled={unclick}
           >
             <div className="button-text">
               開始抽獎

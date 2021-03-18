@@ -82,6 +82,7 @@
       .button {
         padding: 0;
         left: 10px;
+        border: 0px;
         bottom: 10px;
         width: 345px;
         height: 75px;
@@ -91,8 +92,8 @@
         position: absolute;
         background: #A68573;
         flex-direction: column;
+        transition: height 0.2s;
         border-radius: 3px 3px 0px 0px;
-        border: 0px;
 
         .button-text {
           flex: 1;
@@ -102,12 +103,33 @@
           font-weight: 700;
         }
 
+        &:active {
+          height: 67.5px;
+          &:after {
+            height: 0;
+          }
+          
+        }
+
+        &:disabled {
+          height: 75px;
+          background: #a19893;
+          .button-text {
+            color: #ccc;
+          }
+          &:after {
+            height: 7.5px;
+            background: #80746c;
+          }
+        }
+        
         &:after {
           content: '';
           width: 100%;
           height: 7.5px;
           display: block;
           background: #936850;
+          transition: height 0.2s;
         }
       }
     }
