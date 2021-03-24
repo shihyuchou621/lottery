@@ -1,9 +1,17 @@
-import './App2.scss';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import faker from 'faker';
 import cx from "classnames";
 
-const generateList = () => {
+import './App2.scss';
+
+interface FakeRecord {
+  QR: string;
+  name: string;
+}
+
+type AniName = 'start' | 'stop' | 'run' | '';
+
+const generateList = (): FakeRecord[] => {
   let QRlist = [];
   for(var i = 0; i < 100; i++) {
     QRlist.push({QR: faker.internet.password(), name: faker.name.findName()});
@@ -11,26 +19,18 @@ const generateList = () => {
   return QRlist;
 }
 
-const QRlist = generateList();
+const QRlist: FakeRecord[] = generateList();
 
-const generate10 = (QRlist) => {
-  return [...QRlist].sort(() => Math.random() - .5).slice(0, 16); // 不寫[...QRlist]只寫QRlist的話，因為是同一個記憶體位置，可能會回傳原本的東西
+const generate10 = (QRlist: FakeRecord[]): FakeRecord[] => {
+  return [...QRlist].sort(() => Math.random() - .5).slice(0, 16);
 }
 
 const List10 = generate10(QRlist).map( i => i.QR);
 
 export default function App() {
-  // const [drawList, setDrawList] = useState([]);
-  const [aniName, setAniName] = useState("");
-  const [unclick, setUnclick] = useState(false);
+  const [aniName, setAniName] = useState<AniName>("");
+  const [unclick, setUnclick] = useState<boolean>(false);
 
-  // const draw = () => {
-  //   let drawNum = null;
-  //   do {
-  //     drawNum = Math.floor(Math.random() * 6);
-  //   } while (drawList.indexOf(QRlist[drawNum]) > -1);
-  //   return drawNum;
-  // }
 // number
   const handleClick = () => {
     setUnclick(true);
@@ -40,12 +40,7 @@ export default function App() {
       setAniName("run")
     }, 3000);
     
-    // const drawNum = draw();
-    // setDrawList([QRlist[drawNum], ...drawList]);
-
   }
-
-  // const { name, QR } = QRlist.find(i => i === drawList[0]) || {}; // 如果find找不到(前面是falsly)要給空物件
 
   return (
     <div className="App">
@@ -60,7 +55,7 @@ export default function App() {
                       [aniName]: true
                     })}>
                       {List10.map(QR => 
-                        <div className="QR">{QR}</div>
+                        <div className="QR" key={QR}>{QR}</div>
                       )}
                     </div>
                   </div>
