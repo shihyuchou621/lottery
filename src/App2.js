@@ -1,29 +1,30 @@
 import './App2.scss';
-import React, { useState } from 'react';
-import faker from 'faker';
+import React, { useState, useEffect } from 'react';
+// import faker from 'faker';
 import cx from "classnames";
 
-const generateList = () => {
-  let QRlist = [];
-  for(var i = 0; i < 100; i++) {
-    QRlist.push({QR: faker.internet.password(), name: faker.name.findName()});
-  }
-  return QRlist;
-}
+// const generateList = num => {
+//   let QRlist = [];
+//   for(var i = 0; i < num; i++) {
+//     QRlist.push({QR: faker.internet.password(), name: faker.name.findName()});
+//   }
+//   return QRlist;
+// }
 
-const QRlist = generateList();
+// const QRlist = generateList(200);
 
 const generate10 = (QRlist) => {
   return [...QRlist].sort(() => Math.random() - .5).slice(0, 16); // 不寫[...QRlist]只寫QRlist的話，因為是同一個記憶體位置，可能會回傳原本的東西
 }
 
-const List10 = generate10(QRlist).map( i => i.QR);
 
 export default function App() {
   // const [drawList, setDrawList] = useState([]);
   const [aniName, setAniName] = useState("");
   const [unclick, setUnclick] = useState(false);
-
+  const [list, setList] = useState([]);
+  
+  const List10 = generate10(list);
   // const draw = () => {
   //   let drawNum = null;
   //   do {
@@ -32,6 +33,13 @@ export default function App() {
   //   return drawNum;
   // }
 // number
+
+  useEffect(() => {
+    fetch(`${process.env.PUBLIC_URL}/data.json`)
+      .then((res) => res.json())
+      .then(setList);
+  }, [])
+
   const handleClick = () => {
     setUnclick(true);
     setAniName("start");
@@ -59,8 +67,8 @@ export default function App() {
                     <div className={cx("roller",{
                       [aniName]: true
                     })}>
-                      {List10.map(QR => 
-                        <div className="QR">{QR}</div>
+                      {List10.map((QR, index) => 
+                        <div className="QR" key={index}>{QR}</div>
                       )}
                     </div>
                   </div>
