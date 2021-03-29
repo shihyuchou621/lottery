@@ -7,19 +7,21 @@
 }
 
 .App {
-  border: brown solid 2px;
+  height: 100vh;
   text-align: center;
 
   .award {
-    border: black solid 2px;
-
-    .border-out {
-      width: 500px;
-      height: 150px;
-      position: relative;
-      border-radius: 5px;
-      background: #A68573;
-      margin: 80px auto 20px auto;
+  top: 50%;
+  position: relative;
+  transform: translateY(-50%);
+  
+  .border-out {
+    width: 500px;
+    height: 150px;
+    position: relative;
+    border-radius: 5px;
+    background: #A68573;
+    margin: 0 auto 50px auto;
 
       .border-middle {
         @include pos;
@@ -62,7 +64,7 @@
                   height: 80px;
                   font-size: 40px;
                   font-weight: 700;
-                  text-align: center;
+                  line-height: 75px;
                 }
               }
             }
